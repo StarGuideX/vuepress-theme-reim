@@ -1,0 +1,82 @@
+const path = require('path')
+const getSidebarData = require('./util/Sidebar')
+const log = console.log
+
+// Theme API.
+module.exports = (options, ctx) => {
+  const {themeConfig, siteConfig } = ctx
+
+  // 自动设置front matter
+  // setFrontmatter(sourceDir, themeConfig)
+  // log(chalk.blue('tip ') + themeConfig.sidebar)
+
+  // 自动生成结构化侧边栏
+  // const sidebar = themeConfig.sidebar
+  // if(sidebar === 'structuring' || sidebar && sidebar.mode === 'structuring') {
+  //   const collapsable = themeConfig.sidebar.collapsable === false ? false : true
+  //   const sidebarData = getSidebarData(sourceDir, collapsable)
+  //   log(chalk.blue('tip ') + sidebarData)
+  //   if(sidebarData) {
+  //     themeConfig.sidebar = sidebarData
+  //     log(chalk.blue('tip ') + chalk.green('add sidebar data. 侧边栏数据成功生成。'))
+  //   } else {
+  //     themeConfig.sidebar = 'auto'
+  //     log(chalk.yellow('warning: fail to add sidebar data, switch to "auto". 未能添加侧边栏数据，将切换为“auto”。'))
+  //   }
+  // }
+
+  
+
+  // resolve algolia
+  const isAlgoliaSearch = (
+    themeConfig.algolia
+    || Object
+        .keys(siteConfig.locales && themeConfig.locales || {})
+        .some(base => themeConfig.locales[base].algolia)
+  )
+
+  const enableSmoothScroll = themeConfig.smoothScroll === true
+
+  return {
+    // alias () {
+    //   return {
+    //     '@AlgoliaSearchBox': isAlgoliaSearch
+    //       ? path.resolve(__dirname, 'components/AlgoliaSearchBox.vue')
+    //       : path.resolve(__dirname, 'noopModule.js')
+    //   }
+    // },
+
+    plugins: [
+      ['@vuepress/active-header-links', options.activeHeaderLinks],
+      '@vuepress/search',
+      '@vuepress/plugin-nprogress',
+      ['container', {
+        type: 'tip',
+        defaultTitle: {
+          '/': 'TIP',
+          '/zh/': '提示'
+        }
+      }],
+      ['container', {
+        type: 'warning',
+        defaultTitle: {
+          '/': 'WARNING',
+          '/zh/': '注意'
+        }
+      }],
+      ['container', {
+        type: 'danger',
+        defaultTitle: {
+          '/': 'WARNING',
+          '/zh/': '警告'
+        }
+      }],
+      ['container', {
+        type: 'details',
+        before: info => `<details class="custom-block details">${info ? `<summary>${info}</summary>` : ''}\n`,
+        after: () => '</details>\n'
+      }],
+      ['smooth-scroll', enableSmoothScroll]
+    ]
+  }
+}
