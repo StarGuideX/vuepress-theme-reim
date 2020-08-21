@@ -50,7 +50,13 @@ module.exports = {
           children: [
             '',
             'using-vue',
-            'init'
+            'init',
+            'CostPlanning',
+            'SchedulePlanning',
+            'CommunicationPlanning',
+            'QualityPlanning',
+            'ChangePlanning',
+            'PlanningTemple',
           ]
         }
       ],
