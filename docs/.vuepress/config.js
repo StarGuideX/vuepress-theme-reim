@@ -17,49 +17,9 @@ module.exports = {
     docsDir: '',
     editLinkText: '',
     lastUpdated: false,
-    nav: [
-      {
-        text: '管理',
-        ariaLabel: 'pm',
-        items: [
-          { text: '项目管理', items: [{ text: '综述', link: '/docs/pm/summary/' },] }
-        ]
-      },
-      {
-        text: '技术',
-        link: '/docs/tech',
-      },
-      {
-        text: '读书',
-        link: '/docs/book/',
-      },
-      {
-        text: '关于',
-        link: '/other/about',
-      },
-      {
-        text: 'Config',
-        link: '/config/'
-      }
-    ],
+    nav: require('./nav/zh'),
     sidebar: {
-      '/docs/pm/summary/': [
-        {
-          title: '项目管理',
-          collapsable: false,
-          children: [
-            '',
-            'using-vue',
-            'init',
-            'CostPlanning',
-            'SchedulePlanning',
-            'CommunicationPlanning',
-            'QualityPlanning',
-            'ChangePlanning',
-            'PlanningTemple',
-          ]
-        }
-      ],
+      '/docs/pm/summary/': require('./sidebar/pm'),
     }
   },
 
