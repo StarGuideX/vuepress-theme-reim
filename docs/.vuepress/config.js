@@ -19,7 +19,7 @@ module.exports = {
     lastUpdated: false,
     nav: require('./nav/zh'),
     sidebar: {
-      '/docs/pm/summary/': require('./sidebar/pm'),
+      '/docs/pm/summary/': require('./sidebar/pm')
     }
   },
 

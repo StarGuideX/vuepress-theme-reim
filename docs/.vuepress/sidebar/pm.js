@@ -2,10 +2,11 @@ module.exports = [
     {
       title: '项目管理',
       collapsable: false,
+      sidebarDepth: 3,
       children: [
         '',
-        'using-vue',
         'init',
+        'initiation',
         'CostPlanning',
         'SchedulePlanning',
         'CommunicationPlanning',
