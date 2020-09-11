@@ -6,6 +6,8 @@ module.exports = [
       children: [
         '',
         'ReadWriteSeparation',
+        'ServiceDiscovery',
+        'Ocelot'
       ]
     }
 ]
