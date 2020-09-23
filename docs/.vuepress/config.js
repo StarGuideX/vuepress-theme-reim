@@ -20,7 +20,9 @@ module.exports = {
     nav: require('./nav/zh'),
     sidebar: {
       '/docs/pm/summary/': require('./sidebar/pm'),
-      '/docs/tech/micro_service/': require('./sidebar/tech/micro_service')
+      '/docs/tech/micro_service/': require('./sidebar/tech/micro_service'),
+      '/docs/tech/architecture/': require('./sidebar/tech/micro_service'),
+      '/docs/tech/high_concurrency/': require('./sidebar/tech/high_concurrency')
     }
   },
 

@@ -10,7 +10,9 @@ module.exports = [
         text: '技术',
         ariaLabel: 'tech',
         items: [
-          { text: '微服务', items: [{ text: '综述', link: '/docs/tech/micro_service/' }] }
+          { text: '微服务', items: [{ text: '综述', link: '/docs/tech/micro_service/' }] },
+          { text: '软件架构', items: [{ text: '综述', link: '/docs/tech/architecture/' }] },
+          { text: '高并发', items: [{ text: '综述', link: '/docs/tech/high_concurrency/' }] }
         ]
       },
       {
