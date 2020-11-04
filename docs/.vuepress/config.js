@@ -23,7 +23,7 @@ module.exports = {
       '/docs/tech/micro_service/': require('./sidebar/tech/micro_service'),
       '/docs/tech/architecture/': require('./sidebar/tech/micro_service'),
       '/docs/tech/high_concurrency/': require('./sidebar/tech/high_concurrency'),
-      '/docs/book/notes/communication': require('./sidebar/book/notes/communication')
+      '/docs/book/notes/communication/': require('./sidebar/book/notes/communication')
     }
   },
 
