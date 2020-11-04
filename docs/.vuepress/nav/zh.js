@@ -17,7 +17,10 @@ module.exports = [
       },
       {
         text: '读书',
-        link: '/docs/book/',
+        ariaLabel: 'book',
+        items: [
+          { text: '读书笔记', items: [{ text: '沟通', link: '/docs/book/notes/communication/' }] }
+        ]
       },
       {
         text: '关于',
