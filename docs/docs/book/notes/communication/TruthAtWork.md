@@ -15,6 +15,8 @@
 
 ## 流程
 
+<img :src="$withBase('/book/notes/communication/四种真相杀手.jpg')" alt="四种真相杀手"/>
+
 ## 造成逆耳的四种真相杀手
 
 <img :src="$withBase('/book/notes/communication/四种真相杀手.jpg')" alt="四种真相杀手"/>
