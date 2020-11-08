@@ -2,7 +2,7 @@ const { description } = require('../../package')
 
 module.exports = {
   base: '/blog/',
-  title: 'Glen\'s Blog',
+  title: '大妖史莱姆的博客',
   description: description,
   head: [
     ['meta', { name: 'theme-color', content: '#3eaf7c' }],
