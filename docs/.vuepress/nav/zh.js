@@ -16,6 +16,13 @@ module.exports = [
         ]
       },
       {
+        text: '设计',
+        ariaLabel: 'design',
+        items: [
+          { text: '设计模式', items: [{ text: '设计模式', link: '/docs/design/design_pattern/' }] },
+        ]
+      },
+      {
         text: '读书',
         ariaLabel: 'book',
         items: [
