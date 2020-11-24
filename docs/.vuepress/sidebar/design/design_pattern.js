@@ -5,6 +5,8 @@ module.exports = [
       sidebarDepth: 3,
       children: [
         '',
+        '02Builder',
+        '04Prototype'
       ]
     }
 ]
