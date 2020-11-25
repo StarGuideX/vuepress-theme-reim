@@ -1,128 +1,80 @@
-# 抽象工厂
-### 综述
-#### 定义
-提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类
-#### 描述
- - 使用的是对象
- - 负责创建对象，通过对象的组合
- - 提供一个用来创建一个产品家族的抽象类型，这个类型的子类定义了产品被产生的方法。要想使用这个工厂，必须先实例化它，然后将它传人一些针对抽象类型所写的代码中。所以，和工厂方法一样，我可以把客户从所使用的实际具体产品中解耦
- - 另一个优点是可以把一群相关的产品集合起来
- - 可以使用工厂方法来实现你的具体工厂
+# 抽象工厂——我的家族包含很多人
+> 提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类
 
-#### 缺点
+## 适用性
 
- - 如果加入新产品就必须改变接口
+- 一个系统要独立于他的创建、组合和表示时
+- 一个系统要由多个产品系列中的一个配置时
+- 当你要强调一系列相关的产品对象的设计以便进行联合使用时
+- 当你提供一个产品类库，而只想显示它们的接口而不是实现时
 
-#### 用途
-当你需要创建产品家族和想让制造的相关产品集合起来时，你可以使用我
-#### 类图
-![这里写图片描述](https://img-blog.csdnimg.cn/img_convert/366a12a8c06e6bc8054ba093222271a8.png)
-### 示例
-#### 创建抽象工厂
+## UML
 
-```
-public interface PizzaIngredientFactory
+<img :src="$withBase('/design/design_pattern/01abstractfactoryUML.png')" alt="抽象工厂UML"/>
+
+## 实现
+
+**PhoneSeriesFactory**
+
+一台手机需要各种部件（如Cpu、RAM、相机、操作系统等组成）
+
+```c#
+public abstract class PhoneSeriesFactory
 {
-    Dough CreateDough();
-    Sauce CreateSauce();
-    Cheese CreateCheese();
-    Veggie[] CreateVeggies();
-    Pepperoni CreatePepperoni();
-    Clams CreateClam();
-}
-```
-#### 具体子类
-
-```
-public class NYPizzaIngredientFactory : PizzaIngredientFactory
-{
-    public Cheese CreateCheese()
-    {
-        return new ReggianoCheese();
-    }
-
-    public Clams CreateClam()
-    {
-        return new FreshClams();
-    }
-
-    public Dough CreateDough()
-    {
-        return new ThinCrustDough();
-    }
-
-    public Pepperoni CreatePepperoni()
-    {
-        return new SlicedPepperoni();
-    }
-
-    public Sauce CreateSauce()
-    {
-        return new MarinaraSauce();
-    }
-
-    public Veggie[] CreateVeggies()
-    {
-        Veggie[] veggies = { new Garlic(), new Onion() };
-        return veggies;
-    }
-}
-```
-#### 产品
-
-```
-public interface Dough
-{
-
+    public abstract Cpu CreateCpu();
+    public abstract Camera CreateCamera();
+    public abstract RAM CreateRAM();
+    public abstract OperatingSystem CreateOperatingSystem();
 }
 ```
 
-```
-public class ThinCrustDough : Dough
+**具体子类ApplePhoneSeriesFactory**
+
+Camera、Cpu、OperatingSystem、RAM都是产品，而这些负责在抽象工厂创建产品的子类（ApplePhoneSeriesFactory）通常是以Factory Method来实现的
+
+每一个具体的子类都创建一个家族的产品
+
+```c#
+public class ApplePhoneSeriesFactory : PhoneSeriesFactory
 {
-    public ThinCrustDough()
+    public override Camera CreateCamera()
     {
-        Console.WriteLine("ThinCrustDough");
+        return new SonyCamera();
+    }
+
+    public override Cpu CreateCpu()
+    {
+        return new IntelCpu();
+    }
+
+    public override OperatingSystem CreateOperatingSystem()
+    {
+        return new IOSOperatingSystem();
+    }
+
+    public override RAM CreateRAM()
+    {
+        return new SamSungRAM();
     }
 }
 ```
-## 结果
 
-```
-PizzaStore nyPizzaStore = new NYStylePizzaStore();
-Pizza pizza = nyPizzaStore.OrderPizza("Cheese");
-```
+## 优点
 
-## 输出
+不需要使用创建对象的方法来实例化对象
 
-```
-准备 纽约披萨
-ThinCrustDough
-MarinaraSauce
-ReggianoCheese
-350度烤25分钟
-将比萨饼切成对角片
-将披萨装在披萨盒里
-```
+## 用途
 
+当你需要创建产品家族和想让制造的相关产品集合起来时
 
+## 缺点
 
+如果加入新产品就必须改变接口
 
+## 相关模式
 
+Abstract Factory类通常用工厂方法（Factory Method）实现，但它们也可以使用Prototype实现
 
+一个具体的工厂通常是一个单例（Singleton）
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-抽象工厂类图.png
+#### 

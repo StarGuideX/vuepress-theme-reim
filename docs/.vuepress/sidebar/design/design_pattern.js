@@ -5,8 +5,11 @@ module.exports = [
       sidebarDepth: 3,
       children: [
         '',
+        '01AbstractFactory',
         '02Builder',
-        '04Prototype'
+        '03FactoryMethod',
+        '04Prototype',
+        '05Singleton'
       ]
     }
 ]

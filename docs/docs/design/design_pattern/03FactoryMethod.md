@@ -1,62 +1,62 @@
-# 建造者模式——创建自定义套路
+# 工厂方法——创建对象延迟到子类
 
-> 将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示
+> 定义了一个创建对象的接口，但由于子类决定要实例化的是哪一个。Factory Method使一个类的实例化推迟到子类
 
 ## 适用性
 
-- 当创建复杂对象的算法应该独立于该对象的组成部分以及它们的装配方式时。
-
-- 当构造过程必须允许被构造的对象有不同的表示时。
+- 当一个类不知道它所必须创建的对象的类的时候
+- 当一个类希望由它的子类来指定它所创建的对象的时候
+- 当类创建对象的职责委托给多个帮助子类的某一个，并且你希望将哪一个帮助子类是代理者这一信息局部化的时候
 
 ## UML
 
-<img :src="$withBase('/design/design_pattern/02builderUML.png')" alt="建造者UML"/>
+<img :src="$withBase('/design/design_pattern/03FactoryMethod.png')" alt="工厂方法UML"/>
 
 ## 实现
 
-**如果我们需要柠檬茶**
+**抽象工厂PhoneFactory：** 我们需要生产不同品牌的手机。定义一个抽象工厂，让子类实现此方法制造产品。通常会包含依赖于抽象产品的代码，而这些抽象产品由子类制造，抽象工厂不需要真的知道在制造哪种具体产品。
 
 ```c#
-DrinkMaker drinkMaker = new TeaDrinkMaker();
-
-TeaDrink teaDrink = drinkMaker
-    .AddLemon()
-    .AddTea()
-    .GetDrink();
+public abstract class PhoneFactory
+{
+    protected abstract Phone CreatePhone(string type);
+}
 ```
 
-**如果我们需要蜂蜜柠檬茶**
+**具体子类HuaWeiPhoneFactory：**
 
 ```c#
-DrinkMaker drinkMaker = new TeaDrinkMaker();
-
-TeaDrink teaDrink = drinkMaker
-    .AddHoney()
-    .AddLemon()
-    .AddTea()
-    .GetDrink();
+public class HuaWeiPhoneFactory : PhoneFactory
+{
+    protected override Phone CreatePhone(string type)
+    {
+        Phone phone = null;
+        switch (type)
+        {
+            case "P30":
+                phone = new HuaWeiP30Phone();
+                break;
+            case "P40":
+                phone = new HuaWeiP30Phone();
+                break;
+            default:
+                break;
+        }
+        return phone;
+    }
+}
 ```
 
 ## 优点
 
- - 将一个复杂对象的创建过程封装起来
- - 允许对象通过多个步骤来创建，并且可以改变过程（这和只有一个步骤的工厂模式不同）
- - 向客户隐藏产品内部的表现
- - 产品的实现可以被替换，因为客户只看到一个抽象的接口
-
-## 用途
-
-经常被用来创建组合结构
+不需要使用创建对象的方法来实例化对象。
 
 ## 缺点
 
-与工厂模式相比，采用生成器模式创建对象的客户，需要具备更多的领域知识
+不能通过继承来改变创建方法的行为。
 
 ## 相关模式
 
-Abstract Factory和Builder相似，因为它也可以创建复杂对象。主要的区别是Builder模式着重一步步构造一个复杂对象。而Abstract Factory着重于多个系列的产品对象（简单或是复杂的）。Builder在最后一步返回产品。而对于Abstract Factory来说，产品是立即返回的。
+Abstract Factory经常用工厂方法来实现。
 
-Composite通常是用Builder生成的。
-
-
-
+工厂方法通常在Template Methods中被调用。
