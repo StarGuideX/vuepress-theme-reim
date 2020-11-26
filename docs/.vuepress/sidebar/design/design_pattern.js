@@ -9,7 +9,8 @@ module.exports = [
         '02Builder',
         '03FactoryMethod',
         '04Prototype',
-        '05Singleton'
+        '05Singleton',
+        '06Adapter'
       ]
     }
 ]
