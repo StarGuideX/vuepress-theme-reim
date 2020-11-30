@@ -12,7 +12,9 @@ module.exports = [
         '05Singleton',
         '06Adapter',
         '07Bridge',
-        '08Composite'
+        '08Composite',
+        '09Decorator',
+        '10Facade'
       ]
     }
 ]
